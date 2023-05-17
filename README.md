@@ -78,3 +78,21 @@ resource "aws_instance" "frontend" {
 }
 ```
 
+#### Lets validate the terraform code 
+```sh
+terraform validate
+```
+#### Lets plan the architecture and verify once again.
+```sh
+terraform plan
+```
+#### Lets apply the above architecture to the AWS.
+```sh
+terraform apply
+```
+
+----
+## Conclusion
+
+In summary, the code creates an EC2 instance and provisions it using a user data script. The user data script is copied to the instance using the file provisioner, and then the script is executed on the instance using the remote-exec provisioner.The code includes a trigger that detects changes in the user data script (userdata.sh). When changes occur in the script, Terraform will consider it as a trigger event and execute the provisioning steps again.
+
