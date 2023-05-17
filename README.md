@@ -59,3 +59,22 @@ inline = [
     } 
  } 
 ```
+> Creating instance
+
+The aws_instance resource block creates an EC2 instance. It uses the specified AMI (var.ami_id), instance type (var.instance_type), key pair name (var.key), security group ID(s) (var.sg_id), and assigns tags to the instance.
+
+```
+resource "aws_instance" "frontend" {
+  ami                    = var.ami_id
+  instance_type          = var.instance_type
+  key_name               = var.key_name
+  vpc_security_group_ids = [var.sg_id]
+
+  tags = {
+    Name    = "${var.project_name}-${var.project_enviroment}"
+    Project = "${var.project_name}"
+    Env     = "${var.project_enviroment}"
+  }
+}
+```
+
