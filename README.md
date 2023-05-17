@@ -1,4 +1,4 @@
-#### provisioner-through-null_resource
+## Provisioner-through-null_resource
 
 Recently one of my clients needs to provision his instance without using userdata and he wanted to make frequent and dynamic changes in script without recreating the instance. So I came to the below solution where I defined provisioners through null_resource.
 
@@ -30,7 +30,9 @@ depends_on = [ aws_instance.frontend ]
 > Add provisioners to the null_resource block
 
 •	The "file" provisioner copies a file named "userdata.sh" from the local machine to the instance at the path "/tmp/userdata.sh". The provisioner uses SSH to connect to the instance and authenticate with a private key. The connection details are specified using the "connection" block.
+
 •	The "remote-exec" provisioner runs two commands on the instance using SSH. The commands make the "/tmp/userdata.sh" file executable and then execute it. The "inline" parameter specifies the list of commands to execute. Like the "file" provisioner, the "remote-exec" provisioner uses the "connection" block to specify the connection details.
+
 •	If you need to make changes to the provisioners, you can simply update the userdata script and apply it again. Terraform will detect the changes and execute the new provisioners
 
 ```
